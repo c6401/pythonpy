@@ -184,7 +184,7 @@ try:
         exec(args.post_cmd)
 except Exception as ex:
     import traceback
-    print(traceback.format_exc())
+    sys.stderr.write(traceback.format_exc())
 
 def main():
     pass
