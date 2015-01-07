@@ -1,11 +1,13 @@
 #!/usr/bin/env python2
 from __future__ import (unicode_literals, absolute_import,
                         print_function, division)
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 from signal import signal, SIGPIPE, SIG_DFL
 signal(SIGPIPE,SIG_DFL)
 
 import argparse
-import sys
 import json
 import re
 from collections import Iterable
