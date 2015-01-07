@@ -2,8 +2,11 @@
 from __future__ import (unicode_literals, absolute_import,
                         print_function, division)
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+
+if sys.version_info.major == 2:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+
 from signal import signal, SIGPIPE, SIG_DFL
 signal(SIGPIPE,SIG_DFL)
 
