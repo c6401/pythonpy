@@ -190,9 +190,12 @@ try:
 
     if args.post_cmd:
         exec(args.post_cmd)
-except Exception as ex:
+except Exception:
     import traceback
-    sys.stderr.write(traceback.format_exc())
+    header = 'File "{}"'.format(__file__)
+    lines = traceback.format_exception(*sys.exc_info())
+    lines = (line for line in lines if not line.lstrip().startswith(header))
+    sys.stderr.write(''.join(lines))
 
 def main():
     pass
