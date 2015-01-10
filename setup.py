@@ -2,24 +2,40 @@
 from setuptools import setup
 import os
 import sys
+import tempfile
 
-if os.geteuid() == 0:
-    data_files = [('/etc/bash_completion.d', ['pythonpy/pycompletion.sh']),]
+for path in os.environ['PATH'].split(':'):
+    target = os.path.join(os.path.dirname(path), 'etc', 'bash_completion.d')
+    if os.path.isdir(target):
+        break
 else:
-    if sys.argv[1] == 'install':
-        print(
+    # Fall back to the default used by many Linux distros
+    target = '/etc/bash_completion.d'
+
+try:
+    with tempfile.TemporaryFile(dir=target) as t:
+        pass
+except OSError as e:
+    print(
 '''******************************************************************************
-Looks like you didn't run this command using sudo.
-Pythonpy needs root privileges to copy pycompletion.sh to /etc/bash_completion.d
-1) If you are in a virtualenv, you can configure tab completion without root using:
-    source /path/to/virtualenv/bash_completion.d/pycompletion.sh
-2) If you aren't using virtualenv, remember that pip requires sudo by default
-    on most systems. py is a simple python script that does not require any
-    root access or special privileges. If you don't like using root,
-    learn virtualenv and refer to 1).
+Pythonpy can't create a file in:
+    {}
+The error was:
+    {}
+It looks like you either didn't run this command using sudo, or don't have
+bash completions set up.
+1) If this is intentional (e.g., because you're in a virtualenv), you can
+   configure tab completion without root using:
+   source /path/to/virtualenv/bash_completion.d/pycompletion.sh
+2) Otherwise, remember that pip requires sudo by default
+   on most systems. py is a simple python script that does not require any
+   root access or special privileges. If you don't like using root,
+   learn virtualenv and refer to 1).
 Installation proceeding without root access...
 ******************************************************************************''')
-    data_files = [('bash_completion.d', ['pythonpy/pycompletion.sh']),]
+    target='bash_completion.d'
+
+data_files = [(target, ['pythonpy/pycompletion.sh']),]
 
 py_entry = 'py%s = pythonpy.__main__:main'
 pycompleter_entry = 'pycompleter%s = pythonpy.pycompleter:main'
