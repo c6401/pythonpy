@@ -192,10 +192,17 @@ try:
         exec(args.post_cmd)
 except Exception:
     import traceback
-    header = 'File "{}"'.format(__file__)
+    pyheader = 'File "{}"'.format(__file__)
+    exprheader = 'File "<string>"'
+    foundexpr = False
     lines = traceback.format_exception(*sys.exc_info())
-    lines = (line for line in lines if not line.lstrip().startswith(header))
-    sys.stderr.write(''.join(lines))
+    for line in lines:
+        if line.lstrip().startswith(pyheader):
+            continue
+        sys.stderr.write(line)
+        if not foundexpr and line.lstrip().startswith(exprheader):
+            sys.stderr.write('    {}\n'.format(args.expression))
+            foundexpr = True
 
 def main():
     pass
