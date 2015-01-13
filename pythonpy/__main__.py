@@ -87,6 +87,9 @@ parser.add_argument('--i', '--ignore_exceptions',
 
 try:
     args = parser.parse_args()
+    if sum([args.list_of_stdin, args.lines_of_stdin, args.filter_result]) > 1:
+        sys.stderr.write('Pythonpy accepts at most one of [-x, -fx, -l] flags\n')
+        sys.exit()
 
     if args.json_input:
         def loads(str_):
