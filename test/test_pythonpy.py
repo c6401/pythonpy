@@ -27,7 +27,6 @@ class TestPythonPy(unittest.TestCase):
 
     def test_imports(self):
         module_commands = ["math.ceil(2.5)",
-                           "base64.b64encode('data to be encoded')",
                            "calendar.weekday(1955, 11, 5)",
                            "csv.list_dialects()",
                            "datetime.timedelta(hours=-5)",
