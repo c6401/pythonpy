@@ -190,7 +190,7 @@ try:
 
     if args.post_cmd:
         exec(args.post_cmd)
-except Exception:
+except Exception as ex:
     import traceback
     pyheader = 'File "{}"'.format(__file__)
     exprheader = 'File "<string>"'
@@ -200,7 +200,7 @@ except Exception:
         if line.lstrip().startswith(pyheader):
             continue
         sys.stderr.write(line)
-        if not foundexpr and line.lstrip().startswith(exprheader):
+        if not foundexpr and line.lstrip().startswith(exprheader) and not isinstance(ex, SyntaxError):
             sys.stderr.write('    {}\n'.format(args.expression))
             foundexpr = True
 
