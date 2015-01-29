@@ -192,12 +192,12 @@ try:
         exec(args.post_cmd)
 except Exception as ex:
     import traceback
-    pyheader = 'File "{}"'.format(__file__)
+    pyheader = 'pythonpy/__main__.py'
     exprheader = 'File "<string>"'
     foundexpr = False
     lines = traceback.format_exception(*sys.exc_info())
     for line in lines:
-        if line.lstrip().startswith(pyheader):
+        if pyheader in line:
             continue
         sys.stderr.write(line)
         if not foundexpr and line.lstrip().startswith(exprheader) and not isinstance(ex, SyntaxError):
