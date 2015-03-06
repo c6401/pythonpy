@@ -19,9 +19,9 @@ except OSError as e:
     print(
 '''******************************************************************************
 Pythonpy can't create a file in:
-    {}
+    /etc/bash_completion.d
 The error was:
-    {}
+    %s
 It looks like you either didn't run this command using sudo, or don't have
 bash completions set up.
 1) If this is intentional (e.g., because you're in a virtualenv), you can
@@ -32,7 +32,7 @@ bash completions set up.
    root access or special privileges. If you don't like using root,
    learn virtualenv and refer to 1).
 Installation proceeding without root access...
-******************************************************************************''')
+******************************************************************************''') % e
     target='bash_completion.d'
 
 data_files = [(target, ['pythonpy/pycompletion.sh']),]
