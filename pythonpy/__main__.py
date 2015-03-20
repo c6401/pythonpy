@@ -53,42 +53,46 @@ def inspect_source(obj):
         return help(obj)
 
 parser = argparse.ArgumentParser(
-            formatter_class=argparse.RawDescriptionHelpFormatter)
+            formatter_class=argparse.RawDescriptionHelpFormatter,
+            add_help=False)
 
-parser.add_argument('expression', nargs='?', default='None')
-parser.add_argument('-x', dest='lines_of_stdin', action='store_const',
+group = parser.add_argument_group("Options")
+
+parser.add_argument('expression', nargs='?', default='None', help="e.g. py '2 ** 32'")
+group.add_argument('-x', dest='lines_of_stdin', action='store_const',
                     const=True, default=False,
-                    help='treat each row as x')
-parser.add_argument('-fx', dest='filter_result', action='store_const',
+                    help='treat each row of stdin as x')
+group.add_argument('-fx', dest='filter_result', action='store_const',
                     const=True, default=False,
-                    help='keep rows satisfying condition(x)')
-parser.add_argument('-l', dest='list_of_stdin', action='store_const',
+                    help=argparse.SUPPRESS)
+group.add_argument('-l', dest='list_of_stdin', action='store_const',
                     const=True, default=False,
                     help='treat list of stdin as l')
-parser.add_argument('-c', dest='pre_cmd', help='run code before expression')
-parser.add_argument('-C', dest='post_cmd', help='run code after expression')
-parser.add_argument('-V', '--version', action='version', version=__version_info__, help='version info')
-parser.add_argument('--ji', '--json_input',
+group.add_argument('--ji', '--json_input',
                     dest='json_input', action='store_const',
                     const=True, default=False,
-                    help='pre-process each row with json.loads(row)')
-parser.add_argument('--jo', '--json_output',
+                    help=argparse.SUPPRESS)
+group.add_argument('--jo', '--json_output',
                     dest='json_output', action='store_const',
                     const=True, default=False,
-                    help='post-process each row with json.dumps(row)')
-parser.add_argument('--si', '--split_input', dest='input_delimiter',
-                    help='pre-process each row with re.split(delimiter, row)')
-parser.add_argument('--so', '--split_output', dest='output_delimiter',
-                    help='post-process each row with delimiter.join(row)')
-parser.add_argument('--i', '--ignore_exceptions',
+                    help=argparse.SUPPRESS)
+group.add_argument('--si', '--split_input', dest='input_delimiter',
+                    help=argparse.SUPPRESS)
+group.add_argument('--so', '--split_output', dest='output_delimiter',
+                    help=argparse.SUPPRESS)
+group.add_argument('-c', dest='pre_cmd', help='run code before expression')
+group.add_argument('-C', dest='post_cmd', help='run code after expression')
+group.add_argument('--i', '--ignore_exceptions',
                     dest='ignore_exceptions', action='store_const',
                     const=True, default=False,
-                    help='Wrap try-except-pass around each row')
+                    help=argparse.SUPPRESS)
+group.add_argument('-V', '--version', action='version', version=__version_info__, help='version info')
+group.add_argument('-h', '--help', action='help', help="show this help message and exit")
 
 try:
     args = parser.parse_args()
     if sum([args.list_of_stdin, args.lines_of_stdin, args.filter_result]) > 1:
-        sys.stderr.write('Pythonpy accepts at most one of [-x, -fx, -l] flags\n')
+        sys.stderr.write('Pythonpy accepts at most one of [-x, -l] flags\n')
         sys.exit()
 
     if args.json_input:
@@ -99,11 +103,6 @@ try:
                 if args.ignore_exceptions:
                     pass
                 else:
-                    if sum(1 for x in sys.stdin) > 0:
-                        sys.stderr.write(
-    """Hint: --ji requies oneline json strings. Use py 'json.load(sys.stdin)'
-    if you have a multi-line json file and not a file with multiple lines of json.
-    """)
                     raise ex
         stdin = (loads(x) for x in sys.stdin)
     elif args.input_delimiter:
