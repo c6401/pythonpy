@@ -16,7 +16,7 @@ try:
     with tempfile.TemporaryFile(dir=target) as t:
         pass
 except OSError as e:
-    print(
+    print((
 '''******************************************************************************
 Pythonpy can't create a file in:
     /etc/bash_completion.d
@@ -32,7 +32,7 @@ bash completions set up.
    root access or special privileges. If you don't like using root,
    learn virtualenv and refer to 1).
 Installation proceeding without root access...
-******************************************************************************''') % e
+******************************************************************************''') % (e,))
     target='bash_completion.d'
 
 data_files = [(target, ['pythonpy/pycompletion.sh']),]
