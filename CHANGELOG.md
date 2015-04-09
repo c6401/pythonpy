@@ -2,6 +2,4 @@
 Removed documentation for flags --ji, --jo, --so, --si, --i, and -fx. 
 These flags are not deprecated. Users should feel comfortable continuing to use them,
 but from some simple polling I have found that they are infrequently used due to
-their complexity and unorthodox double-dash form. If some of them turn out to be sorely
-missed, they may be reincarnated with more conventional single dash, single letter
-forms.
+their complexity and unorthodox double-dash form.
