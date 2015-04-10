@@ -16,23 +16,17 @@ try:
     with tempfile.TemporaryFile(dir=target) as t:
         pass
 except OSError as e:
-    print((
+    print(
 '''******************************************************************************
-Pythonpy can't create a file in:
-    /etc/bash_completion.d
-The error was:
-    %s
-It looks like you either didn't run this command using sudo, or don't have
-bash completions set up.
-1) If this is intentional (e.g., because you're in a virtualenv), you can
-   configure tab completion without root using:
+Pythonpy was not able to install bash completion because it does not have write
+access to /etc/bash_completion.d.
+If you would still like to install bash completion, either:
+1) Reinstall with `sudo pip install pythonpy`
+2) Configure tab completion manually:
    source /path/to/virtualenv/bash_completion.d/pycompletion.sh
-2) Otherwise, remember that pip requires sudo by default
-   on most systems. py is a simple python script that does not require any
-   root access or special privileges. If you don't like using root,
-   learn virtualenv and refer to 1).
+
 Installation proceeding without root access...
-******************************************************************************''') % (e,))
+******************************************************************************''')
     target='bash_completion.d'
 
 data_files = [(target, ['pythonpy/pycompletion.sh']),]
