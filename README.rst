@@ -8,8 +8,10 @@ Installation
 
 ::
 
-py 'expression' ≅ python -c 'print(expression)'
+Usage
 -----------------------------------------------
+
+Pythonpy will evaluate any python expression from the command line.
 
 Float Arithmetic
 ~~~~~~~~~~~~~~~~
@@ -156,5 +158,5 @@ Count words beginning with each letter
 
 ::
 
-If you haven't had enough yet, check out the `wiki <http://github.com/Russell91/pythonpy/wiki>`__
+For more examples, check out the `wiki <http://github.com/Russell91/pythonpy/wiki>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
