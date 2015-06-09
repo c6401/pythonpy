@@ -43,21 +43,6 @@ Import any module automatically
 
 ::
 
-Lists are printed row by row
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-  $ py 'range(3)'
-  0
-  1
-  2
-
-  $ py '[range(3)]'
-  [0, 1, 2]
-
-::
-
 py -x 'foo(x)' will apply foo to each line of input
 ---------------------------------------------------
 
@@ -122,6 +107,21 @@ Get only 2 digit numbers
 
 py -l will set l = list(sys.stdin)
 -------------------------------------------
+
+Lists are printed row by row
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  $ py 'range(3)'
+  0
+  1
+  2
+
+  $ py '[range(3)]'
+  [0, 1, 2]
+
+::
 
 Reverse the input
 ~~~~~~~~~~~~~~~~~
