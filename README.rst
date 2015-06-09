@@ -61,7 +61,7 @@ Lists are printed row by row
 py -x 'foo(x)' will apply foo to each line of input
 ---------------------------------------------------
 
-Multiply each line of input by 7.
+Multiply each line of input by 7
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -70,6 +70,17 @@ Multiply each line of input by 7.
   0
   7
   14
+
+::
+
+Grab the second column of a csv
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  $ echo $'a1,b1,c1\na2,b2,c2' | py -x 'x.split(",")[1]'
+  b1
+  b2
 
 ::
 
