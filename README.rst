@@ -107,16 +107,16 @@ Append ".txt" to every file in the directory
 
 ::
 
-Get only even numbers
+Get only 2 digit numbers
 ~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-  $ py 'range(8)' | py -x 'x if int(x)%2 == 0 else None'
-  0
-  2
-  4
-  6
+  $ py 'range(14)' | py -x 'x if len(x) == 2 else None'
+  10
+  11
+  12
+  13
 
 ::
 
