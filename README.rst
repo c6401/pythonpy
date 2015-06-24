@@ -4,7 +4,6 @@ Installation
 ::
 
   sudo pip install pythonpy
-  # restart your shell for tab completion to take effect 
 
 ::
 
