@@ -91,6 +91,15 @@ Append ".txt" to every file in the directory
 
 ::
 
+Remove every file returned by the find command
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  $ find . -type f | py -x '"rm %s" % x' | sh 
+
+::
+
 Get only 2 digit numbers
 ~~~~~~~~~~~~~~~~~~~~~
 
