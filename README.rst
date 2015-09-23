@@ -68,18 +68,6 @@ Grab the second column of a csv
 
 ::
 
-Append ".txt" to each line of input
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-::
-
-  $ py 'range(3)' | py -x 'x + ".txt"'
-  0.txt
-  1.txt
-  2.txt
-
-::
-
 Append ".txt" to every file in the directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -153,13 +141,14 @@ Sum the input
 
 ::
 
-Count the lines of input
-~~~~~~~~~~~~~~~~~~~~~~~~
+Sort a csv by the second column
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-  $ py 'range(17)' | py -l 'len(l)'
-  17
+  $ echo $'a,2\nb,1' | py -l 'sorted(l, key=lambda x: x.split(",")[1])'
+  b,1
+  a,2
 
 ::
 
