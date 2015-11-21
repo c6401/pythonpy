@@ -93,7 +93,7 @@ try:
     args = parser.parse_args()
     if sum([args.list_of_stdin, args.lines_of_stdin, args.filter_result]) > 1:
         sys.stderr.write('Pythonpy accepts at most one of [-x, -l] flags\n')
-        sys.exit()
+        sys.exit(1)
 
     if args.json_input:
         def loads(str_):
