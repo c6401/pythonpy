@@ -202,6 +202,8 @@ except Exception as ex:
         if not foundexpr and line.lstrip().startswith(exprheader) and not isinstance(ex, SyntaxError):
             sys.stderr.write('    {}\n'.format(args.expression))
             foundexpr = True
+    
+    sys.exit(1)
 
 def main():
     pass
