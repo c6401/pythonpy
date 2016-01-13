@@ -25,10 +25,16 @@ Python %s''' % (__version__, sys.version.split(' ')[0])
 
 def import_matches(query, prefix=''):
     matches = set(re.findall(r"(%s[a-zA-Z_][a-zA-Z0-9_]*)\.?" % prefix, query))
-    for module_name in matches:
+    for raw_module_name in matches:
+        if re.match('np(\..*)?$', raw_module_name):
+            module_name = re.sub('^np', 'numpy', raw_module_name)
+        elif re.match('pd(\..*)?$', raw_module_name):
+            module_name = re.sub('^pd', 'pandas', raw_module_name)
+        else:
+            module_name = raw_module_name
         try:
             module = __import__(module_name)
-            globals()[module_name] = module
+            globals()[raw_module_name] = module
             import_matches(query, prefix='%s.' % module_name)
         except ImportError as e:
             pass
