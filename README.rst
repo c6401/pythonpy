@@ -3,7 +3,7 @@ Installation
 
 ::
 
-  sudo pip install pythonpy
+  pip install pythonpy
 
 ::
 
