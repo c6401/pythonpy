@@ -19,7 +19,7 @@ setup(
     url='https://github.com/Russell91/pythonpy',
     long_description='https://github.com/Russell91/pythonpy',
     packages=['pythonpy'],
-    package_data={'pythonpy': ['data/pycompletion.sh']},
+    package_data={'pythonpy': ['completion/pycompletion.sh']},
     entry_points = {
         'console_scripts': entry_points_scripts
     },
