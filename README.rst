@@ -166,5 +166,12 @@ Count words beginning with each letter
 
 ::
 
-For more examples, check out the `wiki <http://github.com/Russell91/pythonpy/wiki>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+For more examples, check out the `wiki <http://github.com/Russell91/pythonpy/wiki>`__.
+
+Pythonpy also supports ipython style tab completion, which you can enable as follows
+
+::
+
+  $ source $(python -c 'import os; import pkg_resources; print(os.path.abspath(pkg_resources.resource_filename("pythonpy.completion", "pycompletion.sh")))')
+
+::
