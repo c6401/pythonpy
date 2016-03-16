@@ -12,14 +12,14 @@ for e in endings:
 
 setup(
     name='pythonpy',
-    version='0.4.5',
+    version='0.4.6',
     description='python -c, with tab completion and shorthand',
     #data_files=data_files,
     license='MIT',
     url='https://github.com/Russell91/pythonpy',
     long_description='https://github.com/Russell91/pythonpy',
     packages=['pythonpy'],
-    package_data={'pythonpy': ['completion/pycompletion.sh']},
+    package_data={'pythonpy': ['completion/pycompletion.sh, completion/__init__.py']},
     entry_points = {
         'console_scripts': entry_points_scripts
     },
