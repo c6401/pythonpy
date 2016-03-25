@@ -12,7 +12,7 @@ for e in endings:
 
 setup(
     name='pythonpy',
-    version='0.4.9',
+    version='0.4.10',
     description='python -c, with tab completion and shorthand',
     #data_files=data_files,
     license='MIT',

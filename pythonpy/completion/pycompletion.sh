@@ -1,6 +1,6 @@
 _py()
 {
-    COMPREPLY=($(pycompleter "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
@@ -9,7 +9,7 @@ _py()
 
 _py2()
 {
-    COMPREPLY=($(pycompleter2 "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter2 "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
@@ -18,7 +18,7 @@ _py2()
 
 _py2.6()
 {
-    COMPREPLY=($(pycompleter2.6 "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter2.6 "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
@@ -27,7 +27,7 @@ _py2.6()
 
 _py2.7()
 {
-    COMPREPLY=($(pycompleter2.7 "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter2.7 "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
@@ -36,7 +36,7 @@ _py2.7()
 
 _py3()
 {
-    COMPREPLY=($(pycompleter3 "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter3 "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
@@ -45,7 +45,7 @@ _py3()
 
 _py3.3()
 {
-    COMPREPLY=($(pycompleter3.3 "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter3.3 "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
@@ -53,7 +53,7 @@ _py3.3()
 }
 _py3.4()
 {
-    COMPREPLY=($(pycompleter3.4 "${COMP_WORDS[@]}" 2>/dev/null ))
+    COMPREPLY=($(pycompleter3.4 "${COMP_WORDS[@]}" 2>/dev/null | sed 's/.*1034h//'))
     if [[ ${COMPREPLY[0]} == '_longopt' ]]; then
         COMPREPLY=()
         _longopt 2>/dev/null
