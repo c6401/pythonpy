@@ -30,7 +30,7 @@ class TestPythonPy(unittest.TestCase):
                            "calendar.weekday(1955, 11, 5)",
                            "csv.list_dialects()",
                            "datetime.timedelta(hours=-5)",
-                           "hashlib.sha224(\"Nobody inspects the spammish repetition\").hexdigest()",
+                           "hashlib.sha224(\"Nobody inspects the spammish repetition\".encode(\"utf-8\")).hexdigest()",
                            "glob.glob('*')",
                            "itertools.product(['a','b'], [1,2])",
                            "json.dumps([1,2,3,{'4': 5, '6': 7}], separators=(',',':'))",
