@@ -7,6 +7,8 @@ Installation
 
 ::
 
+Bonus: tab completion setup is explained at the end of the readme
+
 Usage
 -----------------------------------------------
 
@@ -168,10 +170,12 @@ Count words beginning with each letter
 
 For more examples, check out the `wiki <http://github.com/Russell91/pythonpy/wiki>`__.
 
-Pythonpy also supports ipython style tab completion, which you can enable as follows
+Pythonpy also supports ipython style tab completion, which you can enable by adding the following to your .bashrc
 
 ::
 
   $ if command -v find_pycompletion.sh>/dev/null; then source `find_pycompletion.sh`; fi
 
 ::
+
+The tab completion has a few quirks, all of which are necessary evils. If you find any regressions in behaviour, please report them though.
