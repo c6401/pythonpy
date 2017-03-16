@@ -7,8 +7,11 @@ if sys.version_info.major == 2:
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
-from signal import signal, SIGPIPE, SIG_DFL
-signal(SIGPIPE,SIG_DFL)
+try:
+    from signal import signal, SIGPIPE, SIG_DFL
+    signal(SIGPIPE,SIG_DFL)
+except ImportError:  # no SIGPIPE on Windows
+    pass
 
 import argparse
 import json
