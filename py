@@ -77,28 +77,28 @@ group.add_argument('-l', dest='list_of_stdin', action='store_const',
 group.add_argument('-j',
                     dest='json_of_stdin', action='store_const',
                     const=True, default=False,
-                    help=argparse.SUPPRESS)
+                    help='treat parsed json of stdin as j')
+group.add_argument('--csv', dest='csv_input', action='store_const',
+                    const=True, default=False,
+                    help='parse stdin as a csv (run with -x or -l)')
 group.add_argument('--ji',
                     dest='json_line_input', action='store_const',
                     const=True, default=False,
-                    help=argparse.SUPPRESS)
+                    help='preprocess each row of input x with json.loads(x)')
 group.add_argument('--jo',
                     dest='json_line_output', action='store_const',
                     const=True, default=False,
-                    help=argparse.SUPPRESS)
-group.add_argument('--csv', dest='csv_input', action='store_const',
-                    const=True, default=False,
-                    help=argparse.SUPPRESS)
-group.add_argument('--si', dest='input_delimiter',
-                    help=argparse.SUPPRESS)
-group.add_argument('--so', dest='output_delimiter',
-                    help=argparse.SUPPRESS)
-group.add_argument('-c', dest='pre_cmd', help='run code before expression')
-group.add_argument('-C', dest='post_cmd', help='run code after expression')
-group.add_argument('--i', '--ignore_exceptions',
+                    help='postprocess each row of output x with json.dumps(x)')
+group.add_argument('--i',
                     dest='ignore_exceptions', action='store_const',
                     const=True, default=False,
-                    help=argparse.SUPPRESS)
+                    help='skip output for rows that trigger exceptions')
+group.add_argument('--si', dest='input_delimiter',
+                    help='preprocess each row of input x as x.split(delimiter)')
+group.add_argument('--so', dest='out_delimiter',
+                    help='postprocess each row of output x as delimiter.join(x)')
+group.add_argument('-c', dest='pre_cmd', help='run code before expression')
+group.add_argument('-C', dest='post_cmd', help='run code after expression')
 group.add_argument('-V', '--version', action='version', version=__version_info__, help='version info')
 group.add_argument('-h', '--help', action='help', help="show this help message and exit")
 
@@ -179,8 +179,8 @@ try:
             return None
         elif args.json_line_output:
             return json.dumps(output)
-        elif args.output_delimiter:
-            return args.output_delimiter.join(output)
+        elif args.out_delimiter:
+            return args.out_delimiter.join(output)
         elif str(type(output)) == "<class 'collections.OrderedDict'>":
             return dict(output)
         else:
