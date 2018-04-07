@@ -84,8 +84,7 @@ group.add_argument('-j',
                     dest='json_of_stdin', action='store_const',
                     const=True, default=False,
                     help='treat parsed json of stdin as j')
-group.add_argument('--csv', dest='csv_input', action='store_const',
-                    const=True, default=False,
+group.add_argument('--csv', dest='csv_delimiter',
                     help='parse stdin as a csv (run with -x or -l)')
 group.add_argument('--ji',
                     dest='json_line_input', action='store_const',
@@ -124,9 +123,9 @@ try:
                 else:
                     raise ex
         stdin = (loads(x) for x in sys.stdin)
-    elif args.csv_input:
+    elif args.csv_delimiter:
         import csv
-        stdin = csv.DictReader(sys.stdin)
+        stdin = csv.DictReader(sys.stdin, delimiter=args.csv_delimiter)
     elif args.input_delimiter:
         stdin = (x.rstrip().split(args.input_delimiter) for x in sys.stdin)
     else:
