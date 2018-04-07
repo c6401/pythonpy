@@ -1,3 +1,5 @@
+Community Notice: We'll working on a new release of pythonpy2 that will break backwards compatibility. Check out the thread here if you want to be involved: https://github.com/Russell91/pythonpy/issues/86.
+
 Installation
 ------------
 
