@@ -181,6 +181,8 @@ try:
             return json.dumps(output)
         elif args.output_delimiter:
             return args.output_delimiter.join(output)
+        elif str(type(output)) == "<class 'collections.OrderedDict'>":
+            return dict(output)
         else:
             return output
 
