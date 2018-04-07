@@ -74,12 +74,19 @@ group.add_argument('-x', dest='lines_of_stdin', action='store_const',
 group.add_argument('-l', dest='list_of_stdin', action='store_const',
                     const=True, default=False,
                     help='treat list of stdin as l')
-group.add_argument('--jli',
+group.add_argument('-j',
+                    dest='json_of_stdin', action='store_const',
+                    const=True, default=False,
+                    help=argparse.SUPPRESS)
+group.add_argument('--ji',
                     dest='json_line_input', action='store_const',
                     const=True, default=False,
                     help=argparse.SUPPRESS)
-group.add_argument('--jlo',
+group.add_argument('--jo',
                     dest='json_line_output', action='store_const',
+                    const=True, default=False,
+                    help=argparse.SUPPRESS)
+group.add_argument('--csv', dest='csv_input', action='store_const',
                     const=True, default=False,
                     help=argparse.SUPPRESS)
 group.add_argument('--si', dest='input_delimiter',
@@ -97,8 +104,8 @@ group.add_argument('-h', '--help', action='help', help="show this help message a
 
 try:
     args = parser.parse_args()
-    if sum([args.list_of_stdin, args.lines_of_stdin]) > 1:
-        sys.stderr.write('Pythonpy accepts at most one of [-x, -l] flags\n')
+    if sum([args.list_of_stdin, args.lines_of_stdin, args.json_of_stdin]) > 1:
+        sys.stderr.write('Pythonpy accepts at most one of [-x, -l, -j] flags\n')
         sys.exit(1)
 
     if args.json_line_input:
@@ -111,8 +118,11 @@ try:
                 else:
                     raise ex
         stdin = (loads(x) for x in sys.stdin)
+    elif args.csv_input:
+        import csv
+        stdin = csv.DictReader(sys.stdin)
     elif args.input_delimiter:
-        stdin = (re.split(args.input_delimiter, x.rstrip()) for x in sys.stdin)
+        stdin = (x.rstrip().split(args.input_delimiter) for x in sys.stdin)
     else:
         stdin = (x.rstrip() for x in sys.stdin)
 
@@ -158,6 +168,9 @@ try:
     elif args.list_of_stdin:
         l = list(stdin)
         result = eval(args.expression)
+    elif args.json_of_stdin:
+        j = json.load(sys.stdin)
+        result = eval(args.expression)
     else:
         result = eval(args.expression)
 
@@ -175,12 +188,12 @@ try:
     is_iterable = (isinstance(result, Iterable) and
                    hasattr(result, '__iter__') and not
                    isinstance(result, str) or
-                   isinstance(result, enumerable))
+                   isinstance(result, enumerate))
     if isinstance(result, dict):
         for k in result:
             k_formatted = format(k)
             v_formatted = format(result[k])
-            print('%s,%s' % (k_formatted, v_formatted))
+            print('%s: %s' % (k_formatted, v_formatted))
     elif is_iterable:
         for x in result:
             formatted = format(x)
