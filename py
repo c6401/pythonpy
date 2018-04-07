@@ -16,7 +16,13 @@ except ImportError:  # no SIGPIPE on Windows
 import argparse
 import json
 import re
+import os
 from collections import Iterable
+
+if 'PYTHONPY_CONFIG' in os.environ:
+    exec(open(os.environ['PYTHONPY_CONFIG']).read())
+else:
+    exec(open('%s/.pythonpy.py' % os.environ['HOME']).read())
 
 try:
     from . import __version__
