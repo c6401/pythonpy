@@ -19,11 +19,14 @@ import re
 import os
 from collections import Iterable
 
-if 'PYTHONPY_CONFIG' in os.environ:
-    exec(open(os.environ['PYTHONPY_CONFIG']).read())
-else:
-    exec(open('%s/.pythonpy.py' % os.environ['HOME']).read())
-
+try:
+    if 'PYTHONPY_CONFIG' in os.environ:
+        exec(open(os.environ['PYTHONPY_CONFIG']).read())
+    else:
+        exec(open('%s/.pythonpy.py' % os.environ['HOME']).read())
+except:
+    pass
+        
 try:
     from . import __version__
 except (ImportError, ValueError, SystemError):
