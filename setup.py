@@ -24,4 +24,10 @@ setup(
     entry_points = {
         'console_scripts': entry_points_scripts
     },
+    classifiers = [
+        # https://pypi.org/pypi?%3Aaction=list_classifiers
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
+  ],
 )
