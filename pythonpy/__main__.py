@@ -77,6 +77,9 @@ group.add_argument('-fx', dest='filter_result', action='store_const',
 group.add_argument('-l', dest='list_of_stdin', action='store_const',
                     const=True, default=False,
                     help='treat list of stdin as l')
+group.add_argument('-s', dest='string_of_stdin', action='store_const',
+                    const=True, default=False,
+                    help='treat stdin string as s')
 group.add_argument('--ji', '--json_input',
                     dest='json_input', action='store_const',
                     const=True, default=False,
@@ -165,6 +168,9 @@ try:
             result = (x for x in stdin if eval(args.expression))
     elif args.list_of_stdin:
         l = list(stdin)
+        result = eval(args.expression)
+    elif args.string_of_stdin:
+        s = sys.stdin.read()
         result = eval(args.expression)
     else:
         result = eval(args.expression)
