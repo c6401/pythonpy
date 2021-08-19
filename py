@@ -182,7 +182,7 @@ try:
     elif args.json_of_stdin:
         j = json.load(sys.stdin)
         result = eval(args.expression)
-    elif args.string_of_stdin"
+    elif args.string_of_stdin:
         s = sys.stdin.read()
         result = eval(args.expression)
     else:
