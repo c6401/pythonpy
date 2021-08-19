@@ -83,6 +83,9 @@ group.add_argument('-x', dest='lines_of_stdin', action='store_const',
 group.add_argument('-l', dest='list_of_stdin', action='store_const',
                     const=True, default=False,
                     help='treat list of stdin as l')
+group.add_argument('-s', dest='string_of_stdin', action='store_const',
+                    const=True, default=False,
+                    help='treat stdin string as s')
 group.add_argument('-j',
                     dest='json_of_stdin', action='store_const',
                     const=True, default=False,
@@ -178,6 +181,9 @@ try:
         result = eval(args.expression)
     elif args.json_of_stdin:
         j = json.load(sys.stdin)
+        result = eval(args.expression)
+    elif args.string_of_stdin"
+        s = sys.stdin.read()
         result = eval(args.expression)
     else:
         result = eval(args.expression)
