@@ -5,7 +5,7 @@ Installation
 
 ::
 
-  pip install pythonpy
+  pip install git+https://github.com/c6401/pythonpy.git
 
 ::
 
